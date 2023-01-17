@@ -24,7 +24,7 @@
                 @foreach ($clients as $client)
                     <tr>
                         <td>
-                            <img src="{{ asset('images/our-clients/' . $client->image) }}" alt="{{ $client->image_alt }}" width="100">
+                            <img src="{{ $client->image }}" alt="{{ $client->image_alt }}" width="100" class="rounded-circle">
                         </td>
                         <td>{{ $client->image_alt ?? 'NAN' }}</td>
                         <td>

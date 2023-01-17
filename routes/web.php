@@ -5,6 +5,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\OurClientController;
 
+
 Route::get('/', function () {
     return view('admin.layouts.app');
 });
@@ -19,6 +20,12 @@ Route::group(['middleware' => 'auth','prefix'=>'/admin'], function () {
 
     Route::get('/dashboard', [DashboardController::class,'index'])->name('dashboard');
     Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
+
+    /*--------------------------------- File Manager ---------------------------------*/
+
+    Route::group(['prefix' => 'filemanager', 'middleware' => ['web', 'auth']], function () {
+        \UniSharp\LaravelFilemanager\Lfm::routes();
+    });
 
     /*--------------------------------- Our Clients ---------------------------------*/
 

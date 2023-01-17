@@ -37,13 +37,10 @@ class OurClientController extends Controller
     public function store(Request $request)
     {
         $request -> validate([
-            'image' => 'required|mimes:jpeg,png,jpg|max:1024',
+            'image' => 'required',
         ]);
         $client = new OurClient();
-        $image = $request->file('image');
-        $imageName = time().'.'.$image->extension();
-        $image->move(public_path('images/our-clients'), $imageName);
-        $client->image = $imageName;
+        $client->image = $request->image;
         $client->image_alt = $request->image_alt;
         if($client->save()){
             $this->alert('success', 'Client Added Successfully', 'success');
@@ -84,7 +81,17 @@ class OurClientController extends Controller
      */
     public function update(Request $request, OurClient $ourClient)
     {
-        //
+        $request -> validate([
+            'image' => 'required',
+        ]);
+        $ourClient->image = $request->image;
+        $ourClient->image_alt = $request->image_alt;
+        if($ourClient->save()){
+            $this->alert('success', 'Client Updated Successfully', 'success');
+            return redirect()->route('our-clients.index');
+        }
+        $this->alert('error', 'Something Went Wrong', 'error');
+        return redirect()->back();
     }
 
     /**
