@@ -72,6 +72,7 @@ class OurClientController extends Controller
      */
     public function edit(OurClient $ourClient)
     {
+      
         return view('admin.our-clients.edit',compact('ourClient'));
     }
 
@@ -84,6 +85,8 @@ class OurClientController extends Controller
      */
     public function update(Request $request, OurClient $ourClient)
     {
+        echo "Update";
+        exit;
         //
     }
 
@@ -93,8 +96,23 @@ class OurClientController extends Controller
      * @param  \App\Models\OurClient  $ourClient
      * @return \Illuminate\Http\Response
      */
-    public function destroy(OurClient $ourClient)
+    public function destroy( Request $request, OurClient $ourClient)
     {
+        
+        $id=$ourClient->id;
+        $delete=OurClient::where('id',$id)->delete();
+
+
+        if($delete){
+            $this->alert('success', 'Client Removed Successfully', 'danger');
+            return redirect()->route('our-clients.index');
+
+        }else{
+            $this->alert('error', 'Something Went Wrong', 'error');
+            return redirect()->back();
+        }
+        
+
         //
     }
 }
