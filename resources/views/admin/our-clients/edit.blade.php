@@ -10,15 +10,23 @@
         <div class="card-body">
           <form method="POST" action="{{ route('our-clients.update',$ourClient->id) }}" enctype="multipart/form-data">
             @csrf
+            @method('PUT')
             <div class="mb-3">
-              <label class="form-label" for="basic-icon-default-fullname">Client Logo</label>
-                <input type="file" id="client_image" name="image" class="form-control" accept="image/*" >
-                <img src="{{ asset('images/our-clients/' . $ourClient->image) }}" alt="" width="100">
+              <label class="form-label" for="basic-icon-default-company">Logo</label>
+              <div class="input-group">
+                <span class="input-group-btn">
+                  <a id="lfm" data-input="thumbnail" data-preview="holder" class="btn btn-primary">
+                    <i class="menu-icon tf-icons bx bx-file"></i>Choose
+                  </a>
+                </span>
+                <input id="thumbnail" class="form-control" type="text" name="image" value="{{ $ourClient->image }}">
+              </div>
+              <img src="{{ $ourClient->image }}" alt="" width="100">
+              @error('image')    
+                  <div class="text-danger mt-2">{{ $message }}</div>
+              @enderror
             </div>
-            @error('image')    
-                <div class="text-danger mt-2">{{ $message }}</div>
-            @enderror
-            </div>
+
             <div class="mb-3">
               <label class="form-label" for="basic-icon-default-company">Logo Alt Text</label>
               <div class="input-group input-group-merge">
@@ -35,10 +43,11 @@
 @endsection
 @section('scripts')
 <script>
-    $(document).ready(function() {
-        $('#client_image').change(function(e) {
-            $("#image_alt").val(e.target.files[0].name);
-        });
-    });
+  $(document).ready(function() {
+      $('#thumbnail').change(function(e) {
+          $("#image_alt").val(e.value);
+      });
+  });
+  $('#lfm').filemanager('file');
 </script>
 @endsection

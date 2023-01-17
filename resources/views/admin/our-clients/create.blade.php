@@ -14,14 +14,20 @@
           <form method="POST" action="{{ route('our-clients.store') }}" enctype="multipart/form-data">
             @csrf
             <div class="mb-3">
-              <label class="form-label" for="basic-icon-default-fullname">Client Logo</label>
-              <div class="input-group input-group-merge">
-                <input type="file" id="client_image" name="image" class="form-control" accept="image/*" >
+              <label class="form-label" for="basic-icon-default-company">Logo</label>
+              <div class="input-group">
+                <span class="input-group-btn">
+                  <a id="lfm" data-input="thumbnail" data-preview="holder" class="btn btn-primary">
+                    <i class="menu-icon tf-icons bx bx-file"></i>Choose
+                  </a>
+                </span>
+                <input id="thumbnail" class="form-control" type="text" name="image">
+              </div>
+              @error('image')    
+                  <div class="text-danger mt-2">{{ $message }}</div>
+              @enderror
             </div>
-            @error('image')    
-                <div class="text-danger mt-2">{{ $message }}</div>
-            @enderror
-            </div>
+
             <div class="mb-3">
               <label class="form-label" for="basic-icon-default-company">Logo Alt Text</label>
               <div class="input-group input-group-merge">
@@ -39,9 +45,11 @@
 @section('scripts')
 <script>
     $(document).ready(function() {
-        $('#client_image').change(function(e) {
-            $("#image_alt").val(e.target.files[0].name);
+        $('#thumbnail').change(function() {
+            console.log(this.value);
+            $("#image_alt").val(this.value);
         });
     });
+    $('#lfm').filemanager('file');
 </script>
 @endsection

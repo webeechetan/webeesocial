@@ -75,7 +75,15 @@
         </a>
       </li>
 
-      <!-- Layouts -->
+      <!-- File Manager -->
+      <li class="menu-item">
+        <a href="{{ env('APP_URL') }}/admin/filemanager" class="menu-link ">
+          <i class="menu-icon tf-icons bx bx-file"></i>
+          <div data-i18n="Layouts">File Manager</div>
+        </a>
+      </li>
+
+      <!-- Our Clients -->
       <li class="menu-item">
         <a href="javascript:void(0);" class="menu-link menu-toggle">
           <i class="menu-icon tf-icons bx bx-layout"></i>

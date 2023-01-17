@@ -56,6 +56,7 @@
       <script src="{{ asset('admin') }}/js/main.js"></script>
       <script src="{{ asset('admin') }}/js/dashboards-analytics.js"></script>
       <script src="{{ asset('admin') }}/js/ui-toasts.js"></script>
+      <script src="/vendor/laravel-filemanager/js/stand-alone-button.js"></script>
       @if(session()->has('alert'))
         @php
             $alert = Session::get('alert');
