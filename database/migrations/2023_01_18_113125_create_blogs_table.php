@@ -13,13 +13,15 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('news', function (Blueprint $table) {
+        Schema::create('blogs', function (Blueprint $table) {
             $table->id();
-            $table->date('publish_date');
-            $table->string('heading');
-            $table->longText('news');
+            $table->mediumText('title');
+            $table->longText('description');
+            $table->mediumText('short_description')->nullable();
+            $table->boolean('is_published')->default(true);
+            $table->integer('type')->default(1)->comment('1: Blog, 2: News, 3: Work');
+            $table->date('publish_date')->nullable();
             $table->timestamps();
-            
         });
     }
 
@@ -30,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('news');
+        Schema::dropIfExists('blogs');
     }
 };

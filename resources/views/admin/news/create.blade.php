@@ -32,10 +32,7 @@
                 </div>
                 <div class="mb-3">
                     <label class="form-label" for="basic-icon-default-message">News</label>
-                    <div class="input-group input-group-merge">
-                    <span id="basic-icon-default-message2" class="input-group-text"><i class="bx bx-comment"></i></span>
-                    <textarea id="basic-icon-default-message" name="news" class="form-control" placeholder="News"></textarea>
-                    </div>
+                    <textarea id="editor" name="news" class="form-control" placeholder="News"></textarea>
                 </div>
                 <button type="submit" class="btn btn-primary">Save</button>
             </form>
@@ -43,4 +40,15 @@
       </div>
     </div>
   </div>
+@endsection
+
+@section('scripts')
+<script src="//cdn.ckeditor.com/4.6.2/standard/ckeditor.js"></script>
+<script>
+  var options = {
+    filebrowserImageBrowseUrl: '/admin/filemanager',
+  };
+
+  CKEDITOR.replace('editor', options);
+</script>
 @endsection

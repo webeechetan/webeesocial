@@ -5,9 +5,10 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\OurClientController;
 use App\Http\Controllers\NewsController;
+use App\Models\News;
 
-
-Route::get('/', function () {
+Route::get('/{news:heading}', function (News $news) {
+    dd($news);
     return view('admin.layouts.app');
 });
 

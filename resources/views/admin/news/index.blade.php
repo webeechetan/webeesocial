@@ -27,7 +27,7 @@
                 <tr>
                     <td>{{$new->publish_date}}</td>
                     <td>{{$new->heading}}</td>
-                    <td>{{$new->news}}</td>
+                    <td><a href=" {{ route('news.show',$new->id) }} ">{!!  \Illuminate\Support\Str::words($new->news,5,'Read More..') !!}</a></td>
                     <td>
                        <a href="{{route('news.edit', $new->id)}}" class="btn btn-primary btn-sm">Edit</a>
                        <form action="{{route('news.destroy',$new->id)}}" method="POST" class="d-inline">
