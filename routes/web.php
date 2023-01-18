@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\OurClientController;
+use App\Http\Controllers\NewsController;
 
 
 Route::get('/', function () {
@@ -30,6 +31,12 @@ Route::group(['middleware' => 'auth','prefix'=>'/admin'], function () {
     /*--------------------------------- Our Clients ---------------------------------*/
 
     Route::resource('/our-clients', OurClientController::class);
+
+
+    
+    /*--------------------------------- Our News ---------------------------------*/
+
+    Route::resource('/news', NewsController::class);
 
 });
 

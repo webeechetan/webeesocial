@@ -46,7 +46,7 @@ class OurClientController extends Controller
             $this->alert('success', 'Client Added Successfully', 'success');
             return redirect()->route('our-clients.index');
         }
-        $this->alert('error', 'Something Went Wrong', 'error');
+        $this->alert('error', 'Something Went Wrong', 'danger');
         return redirect()->back();
     }
 
@@ -105,11 +105,11 @@ class OurClientController extends Controller
     {
 
         if($ourClient->delete()){
-            $this->alert('success', 'Client Removed Successfully', 'danger');
+            $this->alert('success', 'Client Removed Successfully', 'success');
             return redirect()->route('our-clients.index');
 
         }else{
-            $this->alert('error', 'Something Went Wrong', 'error');
+            $this->alert('error', 'Something Went Wrong', 'danger');
             return redirect()->back();
         }
         
