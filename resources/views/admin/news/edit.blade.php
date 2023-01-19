@@ -11,6 +11,7 @@
         <div class="card-body">
             <form method="POST" action="{{route('news.update',$news->id)}}" >
                 @csrf
+                @method('PUT')
                 <div class="mb-3">
                     <label class="form-label" for="basic-icon-default-fullname">Publish Date</label>
                     <div class="input-group input-group-merge">
@@ -34,8 +35,14 @@
                 </div>
                 <div class="mb-3">
                     <label class="form-label" for="basic-icon-default-message">Description</label>
-                    <textarea id="editor" name="news" class="form-control" placeholder="News"><?php echo $news->description?> </textarea>
+                    @php
+                        $data = str_replace( '&', '&amp;', $news->description )
+                    @endphp
+                    <textarea id="editor" name="description" class="form-control" placeholder="News">{{ $data }}</textarea>
                 </div>
+                @error('description')    
+                <div class="text-danger mt-2">{{ $message }}</div>
+                @enderror
                 <button type="submit" class="btn btn-primary">Save</button>
             </form>
         </div>

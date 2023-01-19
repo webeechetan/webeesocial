@@ -24,9 +24,19 @@
                     <label class="form-label" for="basic-icon-default-company">Title</label>
                     <div class="input-group input-group-merge">
                     <span id="basic-icon-default-company2" class="input-group-text"><i class="bx bx-buildings"></i></span>
-                    <input type="text" id="basic-icon-default-company" name="heading" class="form-control" placeholder="Heading">
+                    <input type="text" id="input_title" name="title" class="form-control" placeholder="Title">
                     </div>
                     @error('heading')    
+                        <div class="text-danger mt-2">{{ $message }}</div>
+                    @enderror
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="basic-icon-default-company">Slug</label>
+                    <div class="input-group input-group-merge">
+                    <span id="basic-icon-default-company2" class="input-group-text"><i class="bx bx-buildings"></i></span>
+                    <input type="text" id="slug" name="slug" class="form-control" placeholder="Slug">
+                    </div>
+                    @error('slug')    
                         <div class="text-danger mt-2">{{ $message }}</div>
                     @enderror
                 </div>
@@ -36,7 +46,7 @@
                 </div>
                 <div class="mb-3">
                     <label class="form-label" for="basic-icon-default-message">Description</label>
-                    <textarea id="editor" name="news" class="form-control" placeholder="News"></textarea>
+                    <textarea id="editor" name="description" class="form-control" placeholder="News"></textarea>
                 </div>
                 <button type="submit" class="btn btn-primary">Save</button>
             </form>

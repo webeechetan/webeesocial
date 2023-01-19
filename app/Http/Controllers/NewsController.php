@@ -39,14 +39,17 @@ class NewsController extends Controller
     {
        
         $request -> validate([
-            'heading' => 'required',
+            'title' => 'required',
+            'description' => 'required',
+            'slug' => 'required',
         ]);
         
         $blog = new Blog();
         $blog->publish_date = $request->publish_date;
-        $blog->title = $request->heading;
+        $blog->slug = $request->slug;
+        $blog->title = $request->title;
         $blog->short_description = $request->short_description;
-        $blog->description = $request->news;
+        $blog->description = $request->description;
         $blog->type = 2;
 
         if($blog->save()){
@@ -74,11 +77,9 @@ class NewsController extends Controller
      * @param  \App\Models\News  $news
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Blog $blog)
     {
-
-        $news = Blog::find($id);        
-        return view ('admin.news.edit',compact('news'));
+        return view ('admin.news.edit',['news' => $blog]);
     }
 
     /**
@@ -88,17 +89,19 @@ class NewsController extends Controller
      * @param  \App\Models\News  $news
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Blog $news)
+    public function update(Request $request, Blog $blog)
     {
+        $request -> validate([
+            'heading' => 'required',
+            'description' => 'required'
+        ]);
 
-        dd($news);
-        
-        $news->publish_date = $request->publish_date;
-        $news->title = $request->heading;
-        $news->short_description = $request->short_description;
-        $news->description = $request->description;
+        $blog->publish_date = $request->publish_date;
+        $blog->title = $request->heading;
+        $blog->short_description = $request->short_description;
+        $blog->description = $request->description;
 
-        if($news->save()){
+        if($blog->save()){
             $this->alert('success','News Updated successfully','success');
             return redirect()->route('news.index');
         }
@@ -112,26 +115,15 @@ class NewsController extends Controller
      * @param  \App\Models\Blog  $news
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Blog $blogs , $id)
+    public function destroy(Blog $blog)
     {
-
-        $id = Blog::find($id);
-
-        if($id->delete()){
+        if($blog->delete()){
             $this->alert('success','News Deleted successfully','success');
-             return redirect()->route('news.index');
+            return redirect()->route('news.index');
+
         }else{
             $this->alert('error','Something went wrong','danger');
-            return redirect()->back(); 
+            return redirect()->back();  
         }
-        
-        // if($blogs->delete()){
-        //     $this->alert('success','News Deleted successfully','success');
-        //     return redirect()->route('news.index');
-
-        // }else{
-        //     $this->alert('error','Something went wrong','danger');
-        //     return redirect()->back();  
-        // }
     }
 }

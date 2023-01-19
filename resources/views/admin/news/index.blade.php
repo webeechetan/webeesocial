@@ -5,7 +5,6 @@
     <link rel="stylesheet" href="//cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css">
 @endsection
 
-
 @section('content')
 <div class="card">
     <div class="card-header d-flex justify-content-between align-items-center">
@@ -27,11 +26,14 @@
                 @foreach($news as $new)
                 <tr>
                     <td>{{$new->publish_date}}</td>
-                    <td>{{$new->title}}</td>
+                    <td>
+                        {{$new->title}}
+                        <small>Slug : {{ $new->slug }}</small>
+                    </td>
                     <td>{{$new->short_description}}</td>
 
                     <td>
-                        <a href="{{ route('news.show',$new->id)}}">{!! \Illuminate\Support\Str::words($new->description,5,'Read More..') !!} </a>
+                        <a href="">{!! \Illuminate\Support\Str::words($new->description,5,'Read More..') !!} </a>
                     </td>
                     
                     <td>

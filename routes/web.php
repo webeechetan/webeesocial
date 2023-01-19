@@ -8,8 +8,8 @@ use App\Http\Controllers\NewsController;
 use App\Models\News;
 use App\Models\Blog;
 
-Route::get('/{news:heading}', function (News $news) {
-    //dd($news);
+Route::get('/{blog:slug}', function (Blog $blog) {
+    dd($blog);
     return view('admin.layouts.app');
 });
 
@@ -38,8 +38,12 @@ Route::group(['middleware' => 'auth','prefix'=>'/admin'], function () {
     
     /*--------------------------------- Our News ---------------------------------*/
 
-    Route::resource('/news', NewsController::class);
-
+    Route::get('/news', [NewsController::class,'index'])->name('news.index');
+    Route::get('/news/create', [NewsController::class,'create'])->name('news.create');
+    Route::post('/news', [NewsController::class,'store'])->name('news.store');
+    Route::get('/news/{blog}', [NewsController::class,'edit'])->name('news.edit');
+    Route::put('/news/{blog}', [NewsController::class,'update'])->name('news.update');
+    Route::delete('/news/{blog}', [NewsController::class,'destroy'])->name('news.destroy');
 });
 
 
