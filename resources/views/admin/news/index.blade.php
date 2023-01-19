@@ -17,8 +17,9 @@
             <thead>
                 <tr>
                     <th>Publish Date</th>
-                    <th>Heading</th>
-                    <th>News</th>
+                    <th>Title</th>
+                    <th>Short Description</th>
+                    <th>Description</th>
                     <th>Actions</th>
                 </tr>
             </thead>
@@ -26,8 +27,13 @@
                 @foreach($news as $new)
                 <tr>
                     <td>{{$new->publish_date}}</td>
-                    <td>{{$new->heading}}</td>
-                    <td><a href=" {{ route('news.show',$new->id) }} ">{!!  \Illuminate\Support\Str::words($new->news,5,'Read More..') !!}</a></td>
+                    <td>{{$new->title}}</td>
+                    <td>{{$new->short_description}}</td>
+
+                    <td>
+                        <a href="{{ route('news.show',$new->id)}}">{!! \Illuminate\Support\Str::words($new->description,5,'Read More..') !!} </a>
+                    </td>
+                    
                     <td>
                        <a href="{{route('news.edit', $new->id)}}" class="btn btn-primary btn-sm">Edit</a>
                        <form action="{{route('news.destroy',$new->id)}}" method="POST" class="d-inline">

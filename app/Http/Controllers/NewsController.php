@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\News;
+use App\Models\Blog;
 use Illuminate\Http\Request;
 
 class NewsController extends Controller
@@ -14,7 +15,7 @@ class NewsController extends Controller
      */
     public function index()
     {
-        $news = News::all();
+        $news = Blog::all();
         return view('admin.news.index',compact('news'));
     }
 
@@ -41,12 +42,14 @@ class NewsController extends Controller
             'heading' => 'required',
         ]);
         
-        $news = new News();
-        $news->publish_date = $request->publish_date;
-        $news->heading = $request->heading;
-        $news->news = $request->news;
+        $blog = new Blog();
+        $blog->publish_date = $request->publish_date;
+        $blog->title = $request->heading;
+        $blog->short_description = $request->short_description;
+        $blog->description = $request->news;
+        $blog->type = 2;
 
-        if($news->save()){
+        if($blog->save()){
             $this->alert('success','News Added successfully','success');
             return redirect()->route('news.index');
         }
@@ -71,9 +74,11 @@ class NewsController extends Controller
      * @param  \App\Models\News  $news
      * @return \Illuminate\Http\Response
      */
-    public function edit(News $news)
+    public function edit($id)
     {
-        //
+
+        $news = Blog::find($id);        
+        return view ('admin.news.edit',compact('news'));
     }
 
     /**
@@ -83,26 +88,50 @@ class NewsController extends Controller
      * @param  \App\Models\News  $news
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, News $news)
+    public function update(Request $request, Blog $news)
     {
-        //
+
+        dd($news);
+        
+        $news->publish_date = $request->publish_date;
+        $news->title = $request->heading;
+        $news->short_description = $request->short_description;
+        $news->description = $request->description;
+
+        if($news->save()){
+            $this->alert('success','News Updated successfully','success');
+            return redirect()->route('news.index');
+        }
+        $this->alert('error','Something went wrong','danger');
+        return redirect()->back();
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\News  $news
+     * @param  \App\Models\Blog  $news
      * @return \Illuminate\Http\Response
      */
-    public function destroy(News $news)
+    public function destroy(Blog $blogs , $id)
     {
-        if($news->delete()){
-            $this->alert('success','News Deleted successfully','success');
-            return redirect()->route('news.index');
 
+        $id = Blog::find($id);
+
+        if($id->delete()){
+            $this->alert('success','News Deleted successfully','success');
+             return redirect()->route('news.index');
         }else{
             $this->alert('error','Something went wrong','danger');
-            return redirect()->back();  
+            return redirect()->back(); 
         }
+        
+        // if($blogs->delete()){
+        //     $this->alert('success','News Deleted successfully','success');
+        //     return redirect()->route('news.index');
+
+        // }else{
+        //     $this->alert('error','Something went wrong','danger');
+        //     return redirect()->back();  
+        // }
     }
 }

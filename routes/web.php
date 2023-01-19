@@ -6,9 +6,10 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\OurClientController;
 use App\Http\Controllers\NewsController;
 use App\Models\News;
+use App\Models\Blog;
 
 Route::get('/{news:heading}', function (News $news) {
-    dd($news);
+    //dd($news);
     return view('admin.layouts.app');
 });
 

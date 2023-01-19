@@ -21,7 +21,7 @@
                     </div>
                 </div>
                 <div class="mb-3">
-                    <label class="form-label" for="basic-icon-default-company">HEADING</label>
+                    <label class="form-label" for="basic-icon-default-company">Title</label>
                     <div class="input-group input-group-merge">
                     <span id="basic-icon-default-company2" class="input-group-text"><i class="bx bx-buildings"></i></span>
                     <input type="text" id="basic-icon-default-company" name="heading" class="form-control" placeholder="Heading">
@@ -31,7 +31,11 @@
                     @enderror
                 </div>
                 <div class="mb-3">
-                    <label class="form-label" for="basic-icon-default-message">News</label>
+                    <label class="form-label" for="basic-icon-default-message">Short Description</label>
+                    <input type="text" name="short_description" class="form-control">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="basic-icon-default-message">Description</label>
                     <textarea id="editor" name="news" class="form-control" placeholder="News"></textarea>
                 </div>
                 <button type="submit" class="btn btn-primary">Save</button>
