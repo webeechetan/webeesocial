@@ -6,7 +6,7 @@
       <div class="card mb-4">
         <h4 class="text-center mt-4 text-primary">{{ $news->heading }}</h4>
         <div class="card-body">
-            {!! $news->news !!}
+            {!! $news->description !!}
         </div>
       </div>
     </div>
