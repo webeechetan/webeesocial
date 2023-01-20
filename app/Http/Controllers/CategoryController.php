@@ -14,7 +14,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        //
+        $categoryies = Category::all();
+        return view ('admin.category.index',compact('categoryies'));
     }
 
     /**
@@ -24,7 +25,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.category.create');
     }
 
     /**
@@ -35,7 +36,20 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request -> validate([
+
+            'category_name' => 'required'
+        ]);
+        
+        $category = new Category();
+        $category->name = $request->category_name;
+
+        if($category->save()){
+            $this->alert('success','Category Saved successfully','success');
+            return redirect()->route('category.index');
+        }
+        $this->alert('error','Something went wrong','danger');
+        return redirect()->back();
     }
 
     /**
@@ -57,7 +71,7 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        //
+        return view ('admin.category.edit',compact('category'));
     }
 
     /**
@@ -69,7 +83,17 @@ class CategoryController extends Controller
      */
     public function update(Request $request, Category $category)
     {
-        //
+        $request -> validate([
+            'category_name' => 'required'
+        ]);
+
+        $category->name = $request->category_name;
+        if($category->save()){
+            $this->alert('success', 'Category Updated Successfully', 'success');
+            return redirect()->route('category.index');
+        }
+        $this->alert('error', 'Something Went Wrong', 'error');
+        return redirect()->back();
     }
 
     /**
@@ -80,6 +104,13 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        //
+        if($category->delete()){
+            $this->alert('success','Category Removed successfully','success');
+            return redirect()->route('category.index');
+
+        }
+        $this->alert('error','Something went wrong','danger');
+        return redirect()->back();
+
     }
 }

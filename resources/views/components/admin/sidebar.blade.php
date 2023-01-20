@@ -104,6 +104,7 @@
         </ul>
       </li>
 
+      <!-- News -->
       <li class="menu-item">
         <a href="javascript:void(0);" class="menu-link menu-toggle">
           <i class="menu-icon tf-icons bx bx-detail"></i>
@@ -123,5 +124,37 @@
           </li>
         </ul>
       </li>
+
+      <!-- Category --> 
+      <!-- File Manager -->
+      <li class="menu-item">
+        <a href="{{ env('APP_URL') }}/admin/category" class="menu-link ">
+          <i class="menu-icon tf-icons bx bx-file"></i>
+          <div data-i18n="Layouts">Category</div>
+        </a>
+      </li>
+
+       <!-- Blogs  -->
+       <li class="menu-item">
+        <a href="javascript:void(0);" class="menu-link menu-toggle">
+          <i class="menu-icon tf-icons bx bx-detail"></i>
+          <div data-i18n="Layouts">Blogs</div>
+        </a>
+
+        <ul class="menu-sub">
+          <li class="menu-item">
+            <a href="{{route('blog.index')}}" class="menu-link">
+              <div data-i18n="Without menu">Blog List</div>
+            </a>
+          </li>
+          <li class="menu-item">
+            <a href="{{route('blog.create')}}" class="menu-link">
+              <div data-i18n="Without menu">Add Blog</div>
+            </a>
+          </li>
+        </ul>
+      </li>
+
+
     </ul>
   </aside>
