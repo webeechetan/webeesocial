@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\News;
 use App\Models\Blog;
 use Illuminate\Http\Request;
 
@@ -50,6 +49,11 @@ class NewsController extends Controller
         $blog->title = $request->input_title;
         $blog->short_description = $request->short_description;
         $blog->description = $request->description;
+        $blog->meta_title = $request->meta_title;
+        $blog->meta_description = $request->meta_description;
+        $blog->og_title =  $request->og_title;
+        $blog->og_image = $request->og_image;
+        $blog->thumbnail = $request->thumbnail;
         $blog->type = 2;
 
         if($blog->save()){
@@ -66,10 +70,10 @@ class NewsController extends Controller
      * @param  \App\Models\News  $news
      * @return \Illuminate\Http\Response
      */ 
-    public function show(News $news)
-    {
-        return view('admin.news.show',compact('news'));
-    }
+    // public function show(News $news)
+    // {
+    //     return view('admin.news.show',compact('news'));
+    // }
 
     /**
      * Show the form for editing the specified resource.

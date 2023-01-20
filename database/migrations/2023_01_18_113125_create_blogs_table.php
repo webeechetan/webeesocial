@@ -19,6 +19,11 @@ return new class extends Migration
             $table->longText('description');
             $table->mediumText('short_description')->nullable();
             $table->mediumText('slug')->unique();
+            $table->mediumText('thumbnail')->default('default.jpg');
+            $table->string('meta_title')->nullable();
+            $table->mediumText('meta_description')->nullable();
+            $table->mediumText('og_title')->nullable();
+            $table->mediumText('og_image')->nullable();
             $table->boolean('is_published')->default(true);
             $table->integer('type')->default(1)->comment('1: Blog, 2: News, 3: Work');
             $table->date('publish_date')->nullable();

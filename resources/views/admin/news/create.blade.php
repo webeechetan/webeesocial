@@ -13,41 +13,107 @@
         <div class="card-body">
             <form method="POST" action="{{route('news.store')}}" >
                 @csrf
-                <div class="mb-3">
-                    <label class="form-label" for="basic-icon-default-fullname">Publish Date</label>
-                    <div class="input-group input-group-merge">
-                    <span id="basic-icon-default-fullname2" class="input-group-text"><i class="bx bx-user"></i></span>
-                    <input type="date" class="form-control" id="basic-icon-default-fullname" name="publish_date">
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="mb-3">
+                      <label class="form-label" for="basic-icon-default-fullname">Publish Date</label>
+                      <div class="input-group input-group-merge">
+                        <span id="basic-icon-default-fullname2" class="input-group-text"><i class="bx bxs-watch"></i></span>
+                        <input type="date" class="form-control" id="basic-icon-default-fullname" name="publish_date">
+                      </div>
                     </div>
-                </div>
-                <div class="mb-3">
-                    <label class="form-label" for="basic-icon-default-company">Title</label>
-                    <div class="input-group input-group-merge">
-                    <span id="basic-icon-default-company2" class="input-group-text"><i class="bx bx-buildings"></i></span>
-                    <input type="text" id="input_title" name="input_title" class="form-control" placeholder="Title">
+                  </div>
+
+                  <div class="col-md-6">
+                    <div class="mb-3">
+                        <label class="form-label" for="basic-icon-default-company">Title <span class="text-danger"><b>*</b></span> </label>
+                        <div class="input-group input-group-merge">
+                          <span id="basic-icon-default-company2" class="input-group-text"><i class="bx bx-buildings"></i></span>
+                          <input type="text" id="input_title" name="input_title" class="form-control" placeholder="Title">
+                        </div>
+                          @error('heading')    
+                              <div class="text-danger mt-2">{{ $message }}</div>
+                          @enderror
                     </div>
-                    @error('heading')    
-                        <div class="text-danger mt-2">{{ $message }}</div>
-                    @enderror
-                </div>
-                <div class="mb-3">
-                    <label class="form-label" for="basic-icon-default-company">Slug</label>
-                    <div class="input-group input-group-merge">
-                    <span id="basic-icon-default-company2" class="input-group-text"><i class="bx bx-buildings"></i></span>
-                    <input type="text" id="slug" name="slug" class="form-control" placeholder="Slug">
+                  </div>
+
+                  <div class="col-md-6">
+                    <div class="mb-3">
+                      <label class="form-label" for="basic-icon-default-company">Slug</label>
+                      <div class="input-group input-group-merge">
+                      <span id="basic-icon-default-company2" class="input-group-text"><i class="bx bx-buildings"></i></span>
+                      <input type="text" id="slug" name="slug" class="form-control" placeholder="Slug">
+                      </div>
+                      @error('slug')    
+                          <div class="text-danger mt-2">{{ $message }}</div>
+                      @enderror
                     </div>
-                    @error('slug')    
-                        <div class="text-danger mt-2">{{ $message }}</div>
-                    @enderror
-                </div>
-                <div class="mb-3">
-                    <label class="form-label" for="basic-icon-default-message">Short Description</label>
-                    <input type="text" name="short_description" class="form-control">
-                </div>
-                <div class="mb-3">
-                    <label class="form-label" for="basic-icon-default-message">Description</label>
-                    <textarea id="editor" name="description" class="form-control" placeholder="Description"></textarea>
-                </div>
+                  </div>
+
+                  <div class="col-md-6">
+                    <div class="mb-3">
+                      <label class="form-label" for="basic-icon-default-message">Thumbnail</label>
+                      <div class="input-group">
+                        <span class="input-group-btn text-white">
+                          <a id="lfm" data-input="thumbnail" data-preview="holder" class="btn btn-primary">
+                            <i class="menu-icon tf-icons bx bx-file"></i>Choose
+                          </a>
+                        </span>
+                        <input id="thumbnail" class="form-control" type="text" name="thumbnail">
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div class="col-md-12">
+                    <div class="mb-3">
+                      <label class="form-label" for="basic-icon-default-message">Description</label>
+                      <textarea id="editor" name="description" class="form-control" placeholder="Description"></textarea>
+                    </div>
+                  </div>
+
+                  <div class="col-md-12">
+                    <div class="mb-3">
+                      <label class="form-label" for="basic-icon-default-message">Short Description</label>
+                      <textarea name="short_description" class="form-control"></textarea>
+                    </div>
+                  </div>
+
+                  <div class="col-md-6">
+                    <div class="mb-3">
+                      <label class="form-label" for="basic-icon-default-message">Meta Title</label>
+                      <input type="text" name="meta_title" class="form-control" placeholder="Meta Title">
+                    </div>
+                  </div>
+
+                  <div class="col-md-6">
+                    <div class="mb-3">
+                      <label class="form-label" for="basic-icon-default-message">Meta Description</label>
+                      <input type="text" name="meta_description" class="form-control" placeholder="Meta Description">
+                    </div>
+                  </div>
+
+                  <div class="col-md-6">
+                    <div class="mb-3">
+                      <label class="form-label" for="basic-icon-default-message">OG Title</label>
+                      <input type="text" name="og_title" class="form-control" placeholder="Og Title">
+                    </div>
+                  </div>
+
+                  <div class="col-md-6">
+                    <div class="mb-3">
+                      <label class="form-label" for="basic-icon-default-message">Og Image</label>
+                      <div class="input-group">
+                        <span class="input-group-btn text-white">
+                          <a id="og_image" data-input="og_image_input" data-preview="holder" class="btn btn-primary">
+                            <i class="menu-icon tf-icons bx bx-file"></i>Choose
+                          </a>
+                        </span>
+                        <input id="og_image_input" class="form-control" type="text" name="og_image">
+                      </div>
+                    </div>
+                  </div>
+
+              </div>
                 <button type="submit" class="btn btn-primary">Save</button>
             </form>
         </div>
@@ -59,6 +125,13 @@
 @section('scripts')
 <script src="//cdn.ckeditor.com/4.6.2/standard/ckeditor.js"></script>
 <script>
+
+  $(document).ready(function () {
+    $('#lfm').filemanager('file');
+    $('#og_image').filemanager('file');
+  });
+  
+
   var options = {
     filebrowserImageBrowseUrl: '/admin/filemanager',
   };
