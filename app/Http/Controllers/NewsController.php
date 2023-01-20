@@ -15,8 +15,8 @@ class NewsController extends Controller
      */
     public function index()
     {
-        $news = Blog::all();
-        return view('admin.news.index',compact('news'));
+        $newses = Blog::all();
+        return view('admin.news.index',compact('newses'));
     }
 
     /**
@@ -39,7 +39,7 @@ class NewsController extends Controller
     {
        
         $request -> validate([
-            'title' => 'required',
+            'input_title' => 'required',
             'description' => 'required',
             'slug' => 'required',
         ]);
@@ -47,7 +47,7 @@ class NewsController extends Controller
         $blog = new Blog();
         $blog->publish_date = $request->publish_date;
         $blog->slug = $request->slug;
-        $blog->title = $request->title;
+        $blog->title = $request->input_title;
         $blog->short_description = $request->short_description;
         $blog->description = $request->description;
         $blog->type = 2;
@@ -79,7 +79,7 @@ class NewsController extends Controller
      */
     public function edit(Blog $blog)
     {
-        return view ('admin.news.edit',['news' => $blog]);
+        return view ('admin.news.edit',['newses' => $blog]);
     }
 
     /**

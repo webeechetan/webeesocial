@@ -5,6 +5,8 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\OurClientController;
 use App\Http\Controllers\NewsController;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\BlogController;
 use App\Models\News;
 use App\Models\Blog;
 
@@ -44,6 +46,17 @@ Route::group(['middleware' => 'auth','prefix'=>'/admin'], function () {
     Route::get('/news/{blog}', [NewsController::class,'edit'])->name('news.edit');
     Route::put('/news/{blog}', [NewsController::class,'update'])->name('news.update');
     Route::delete('/news/{blog}', [NewsController::class,'destroy'])->name('news.destroy');
+
+    /*--------------------------------- Category ---------------------------------*/
+
+    Route::resource('/category', CategoryController::class);
+
+
+    /*--------------------------------- Blog ---------------------------------*/
+
+    Route::resource('/blog', BlogController::class);
+
+
 });
 
 
