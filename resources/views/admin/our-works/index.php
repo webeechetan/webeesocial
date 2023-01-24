@@ -1,5 +1,5 @@
 @extends('admin.layouts.app')
-@section('title', 'Blog')
+@section('title', 'News')
 
 @section('styles')
     <link rel="stylesheet" href="//cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css">
@@ -8,11 +8,11 @@
 @section('content')
 <div class="card">
     <div class="card-header d-flex justify-content-between align-items-center">
-        <h5 class="mb-0">Blog List</h5>
-        <a href="{{route('blog.create')}}" class="btn btn-primary btn-sm">Add Blog</a>
+        <h5 class="mb-0">News's</h5>
+        <a href="{{ route('news.create')}}" class="btn btn-primary btn-sm">Add News</a>
     </div>
     <div class="table-responsive text-nowrap">
-        <table class="table table-hover" id="datatable-blog">
+        <table class="table table-hover" id="datatable-news">
             <thead>
                 <tr>
                     <th>Publish Date</th>
@@ -24,16 +24,24 @@
                 </tr>
             </thead>
             <tbody class="table-border-bottom-0">
-                @foreach($blogs as $blog)
+                @foreach($newses as $news)
                 <tr>
-                    <td>{{$blog->publish_date}}</td>
-                    <td>{{$blog->title}}</td>
-                    <td>{{$blog->slug}}</td>
-                    <td>{{$blog->short_description}}</td>
-                    <td>{!!$blog->description!!}</td>
+                    <td>{{$news->publish_date}}</td>
                     <td>
-                    <a href="{{route('blog.edit', $blog->id)}}" class="btn btn-primary btn-sm">Edit</a>
-                       <form action="{{route('blog.destroy',$blog->id)}}" method="POST" class="d-inline">
+                        {{$news->title}}
+                    </td>
+                    <td>
+                        {{$news->slug}}
+                    </td>
+                    <td>{{$news->short_description}}</td>
+
+                    <td>
+                        <a href="">{!! \Illuminate\Support\Str::words($news->description,5,'Read More..') !!} </a>
+                    </td>
+                    
+                    <td>
+                       <a href="{{route('news.edit', $news->id)}}" class="btn btn-primary btn-sm">Edit</a>
+                       <form action="{{route('news.destroy',$news->id)}}" method="POST" class="d-inline">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="btn btn-danger btn-sm">Delete</button>
@@ -41,7 +49,6 @@
                     </td>
                 </tr>
                 @endforeach
-
             </tbody>
         </table>
     </div>
@@ -52,7 +59,7 @@
     <script src="//cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
     <script>
         $(document).ready( function () {
-            $('#datatable-blog').DataTable();
+            $('#datatable-news').DataTable();
         } );
     </script>
 @endsection

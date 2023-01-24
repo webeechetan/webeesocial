@@ -1,3 +1,7 @@
+<!--
+It is just to check the uri segment value so that we can activate the currenct selected menu in sidebar  
+{{Request::segment(2)}} -->
+
 <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
     <div class="app-brand demo">
       <a href="index.html" class="app-brand-link">
@@ -68,7 +72,7 @@
 
     <ul class="menu-inner py-1">
       <!-- Dashboard -->
-      <li class="menu-item active">
+      <li class="menu-item {{Request::segment(2)== 'dashboard' ? 'menu-item active' : ''}}">
         <a href="{{ route('dashboard')}}" class="menu-link">
           <i class="menu-icon tf-icons bx bx-home-circle"></i>
           <div data-i18n="Analytics">Dashboard</div>
@@ -76,16 +80,16 @@
       </li>
 
       <!-- File Manager -->
-      <li class="menu-item">
+      <li class="menu-item {{Request::segment(2)== 'filemanager' ? 'menu-item active' : ''}}">
         <a href="{{ env('APP_URL') }}/admin/filemanager" class="menu-link ">
-          <i class="menu-icon tf-icons bx bx-file"></i>
+          <i class="menu-icon tf-icons bx bx-folder-plus"></i>
           <div data-i18n="Layouts">File Manager</div>
         </a>
       </li>
 
       <!-- Our Clients -->
-      <li class="menu-item">
-        <a href="javascript:void(0);" class="menu-link menu-toggle">
+      <li class="menu-item {{Request::segment(2)== 'our-clients' ? 'menu-item active' : ''}}">
+        <a href="{{ env('APP_URL') }}/admin/our-clients" class="menu-link menu-toggle">
           <i class="menu-icon tf-icons bx bx-layout"></i>
           <div data-i18n="Layouts">Our Clients</div>
         </a>
@@ -105,7 +109,7 @@
       </li>
 
       <!-- News -->
-      <li class="menu-item">
+      <li class="menu-item {{Request::segment(2)== 'news' ? 'menu-item active' : ''}}">
         <a href="javascript:void(0);" class="menu-link menu-toggle">
           <i class="menu-icon tf-icons bx bx-detail"></i>
           <div data-i18n="Layouts">News</div>
@@ -126,8 +130,8 @@
       </li>
 
       <!-- Category --> 
-      <!-- File Manager -->
-      <li class="menu-item">
+
+      <li class="menu-item {{Request::segment(2)=='category' ? 'menu-item active' : ''}}">
         <a href="{{ env('APP_URL') }}/admin/category" class="menu-link ">
           <i class="menu-icon tf-icons bx bx-file"></i>
           <div data-i18n="Layouts">Category</div>
@@ -135,7 +139,7 @@
       </li>
 
        <!-- Blogs  -->
-       <li class="menu-item">
+       <li class="menu-item {{Request::segment(2)== 'blog' ? 'menu-item active' : ''}}">
         <a href="javascript:void(0);" class="menu-link menu-toggle">
           <i class="menu-icon tf-icons bx bx-detail"></i>
           <div data-i18n="Layouts">Blogs</div>
@@ -155,6 +159,12 @@
         </ul>
       </li>
 
-
+       <!-- Our Work -->
+       <li class="menu-item {{Request::segment(2)== 'ourwork' ? 'menu-item active' : ''}}">
+        <a href="{{route('our-works.index')}}" class="menu-link ">
+          <i class="menu-icon tf-icons bx bx-file"></i>
+          <div data-i18n="Layouts"> Our Work</div>
+        </a>
+      </li>
     </ul>
   </aside>
