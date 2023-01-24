@@ -7,6 +7,7 @@ use App\Http\Controllers\OurClientController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\BlogController;
+use App\Http\Controllers\OurWorkController;
 use App\Models\News;
 use App\Models\Blog;
 
@@ -56,6 +57,10 @@ Route::group(['middleware' => 'auth','prefix'=>'/admin'], function () {
 
     Route::resource('/blog', BlogController::class);
 
+    
+    /*--------------------------------- Our Work ---------------------------------*/
+
+    Route::resource('/our-works', OurWorkController::class);
 
 });
 

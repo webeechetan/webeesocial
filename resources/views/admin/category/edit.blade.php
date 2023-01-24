@@ -8,7 +8,7 @@
           <h5 class="mb-0">Edit Category</h5>
         </div>  
         <div class="card-body">
-          <form method="POST" action="{{ route('category.update',$category->id) }}" enctype="multipart/form-data">
+          <form method="POST" action="{{ route('category.update',$category->id) }}"  >
             @csrf
             @method('PUT')
                 <div class="mb-3">

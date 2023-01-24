@@ -7,7 +7,7 @@
         <div class="card-header d-flex justify-content-between align-items-center">
           <h5 class="mb-0">Add News</h5>
           <small class="text-muted float-end">
-            <a href="{{ route('news.index') }}"<button class="btn btn-primary btn-sm">All News</button></a>
+            <a href="{{ route('news.index') }}"><button class="btn btn-primary btn-sm">All News</button></a>
           </small>
         </div>
         <div class="card-body">
@@ -31,7 +31,7 @@
                           <span id="basic-icon-default-company2" class="input-group-text"><i class="bx bx-buildings"></i></span>
                           <input type="text" id="input_title" name="input_title" class="form-control" placeholder="Title">
                         </div>
-                          @error('heading')    
+                          @error('input_title')    
                               <div class="text-danger mt-2">{{ $message }}</div>
                           @enderror
                     </div>
@@ -104,12 +104,13 @@
                       <label class="form-label" for="basic-icon-default-message">Og Image</label>
                       <div class="input-group">
                         <span class="input-group-btn text-white">
-                          <a id="og_image" data-input="og_image_input" data-preview="holder" class="btn btn-primary">
+                          <a id="og_image" data-input="og_image_input" data-preview="og_image_holder" class="btn btn-primary">
                             <i class="menu-icon tf-icons bx bx-file"></i>Choose
                           </a>
                         </span>
                         <input id="og_image_input" class="form-control" type="text" name="og_image">
                       </div>
+                      <div id="og_image_holder" class="img-fluid" width="250px"></div>
                     </div>
                   </div>
 
@@ -127,8 +128,10 @@
 <script>
 
   $(document).ready(function () {
+
     $('#lfm').filemanager('file');
     $('#og_image').filemanager('file');
+
   });
   
 

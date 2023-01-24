@@ -14,7 +14,7 @@ class NewsController extends Controller
      */
     public function index()
     {
-        $newses = Blog::all();
+        $newses = Blog::where('type',2)->get();
         return view('admin.news.index',compact('newses'));
     }
 
@@ -96,16 +96,26 @@ class NewsController extends Controller
     public function update(Request $request, Blog $blog)
     {
         $request -> validate([
-            'heading' => 'required',
-            'description' => 'required'
+            'title' => 'required',
+            'description' => 'required',
+            'thumbnail' => 'required'
         ]);
 
+        
+
         $blog->publish_date = $request->publish_date;
-        $blog->title = $request->heading;
+        $blog->slug = $request->slug;
+        $blog->title = $request->title;
         $blog->short_description = $request->short_description;
         $blog->description = $request->description;
+        $blog->meta_title = $request->meta_title;
+        $blog->meta_description = $request->meta_description;
+        $blog->og_title =  $request->og_title;
+        $blog->og_image = $request->og_image;
+        $blog->thumbnail = $request->thumbnail;
 
         if($blog->save()){
+            
             $this->alert('success','News Updated successfully','success');
             return redirect()->route('news.index');
         }
