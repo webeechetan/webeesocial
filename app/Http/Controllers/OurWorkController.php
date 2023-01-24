@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\OurWork;
+use App\Models\Category;
 use Illuminate\Http\Request;
+use PhpParser\Node\Expr\Cast;
 
 class OurWorkController extends Controller
 {
@@ -14,7 +16,8 @@ class OurWorkController extends Controller
      */
     public function index()
     {
-        return view('admin.our-works.index');
+        $works = OurWork::all();
+        return view('admin.our-works.index',compact('works'));
     }
 
     /**
@@ -24,7 +27,8 @@ class OurWorkController extends Controller
      */
     public function create()
     {
-        //
+        $categories = Category::all();
+        return view('admin.our-works.create',compact('categories'));
     }
 
     /**
@@ -35,7 +39,30 @@ class OurWorkController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'title' => 'required',
+            'description' => 'required',
+            'slug' => 'required',
+        ]);
+
+        $work = new OurWork();
+        $work->slug = $request->slug;
+        $work->title = $request->title;
+        $work->short_description = $request->short_description;
+        $work->description = $request->description;
+        $work->meta_title = $request->meta_title;
+        $work->meta_description = $request->meta_description;
+        $work->og_title =  $request->og_title;
+        $work->og_image = $request->og_image;
+        $work->thumbnail = $request->thumbnail;
+
+        if($work->save()){
+            $work->categories()->attach($request->categories);
+            $this->alert('success','Added successfully','success');
+            return redirect()->route('our-work.index');
+        }
+        $this->alert('error','Something went wrong','error');
+        return redirect()->back();
     }
 
     /**
@@ -57,7 +84,8 @@ class OurWorkController extends Controller
      */
     public function edit(OurWork $ourWork)
     {
-        //
+        $categories = Category::all();
+        return view('admin.our-works.edit',compact('categories'));
     }
 
     /**

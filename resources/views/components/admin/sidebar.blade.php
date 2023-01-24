@@ -160,10 +160,18 @@ It is just to check the uri segment value so that we can activate the currenct s
       </li>
 
        <!-- Our Work -->
-       <li class="menu-item {{Request::segment(2)== 'ourwork' ? 'menu-item active' : ''}}">
+       <li class="menu-item {{Request::segment(2)== 'our-work' ? 'menu-item active' : ''}}">
         <a href="{{route('our-works.index')}}" class="menu-link ">
           <i class="menu-icon tf-icons bx bx-file"></i>
           <div data-i18n="Layouts"> Our Work</div>
+        </a>
+      </li>
+
+      <!-- Metas -->
+      <li class="menu-item {{Request::segment(2)== 'meta' ? 'menu-item active' : ''}}">
+        <a href="{{route('meta.index')}}" class="menu-link ">
+          <i class="menu-icon tf-icons bx bx-file"></i>
+          <div data-i18n="Layouts">Meta</div>
         </a>
       </li>
     </ul>

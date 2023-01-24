@@ -9,13 +9,12 @@
 <div class="card">
     <div class="card-header d-flex justify-content-between align-items-center">
         <h5 class="mb-0">News's</h5>
-        <a href="{{ route('news.create')}}" class="btn btn-primary btn-sm">Add News</a>
+        <a href="{{ route('our-work.create')}}" class="btn btn-primary btn-sm">Add News</a>
     </div>
     <div class="table-responsive text-nowrap">
         <table class="table table-hover" id="datatable-news">
             <thead>
                 <tr>
-                    <th>Publish Date</th>
                     <th>Title</th>
                     <th>Slug</th>
                     <th>Short Description</th>
@@ -24,24 +23,21 @@
                 </tr>
             </thead>
             <tbody class="table-border-bottom-0">
-                @foreach($newses as $news)
+                @foreach($works as $work)
                 <tr>
-                    <td>{{$news->publish_date}}</td>
+                    <td>{{$work->title}}</td>
                     <td>
-                        {{$news->title}}
+                        {{$work->slug}}
                     </td>
-                    <td>
-                        {{$news->slug}}
-                    </td>
-                    <td>{{$news->short_description}}</td>
+                    <td>{{$work->short_description}}</td>
 
                     <td>
-                        <a href="">{!! \Illuminate\Support\Str::words($news->description,5,'Read More..') !!} </a>
+                        <a href="">{!! \Illuminate\Support\Str::words($work->description,5,'Read More..') !!} </a>
                     </td>
                     
                     <td>
-                       <a href="{{route('news.edit', $news->id)}}" class="btn btn-primary btn-sm">Edit</a>
-                       <form action="{{route('news.destroy',$news->id)}}" method="POST" class="d-inline">
+                       <a href="{{route('our-work.edit', $work->id)}}" class="btn btn-primary btn-sm">Edit</a>
+                       <form action="{{route('our-work.destroy',$work->id)}}" method="POST" class="d-inline">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="btn btn-danger btn-sm">Delete</button>

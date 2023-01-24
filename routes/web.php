@@ -7,14 +7,21 @@ use App\Http\Controllers\OurClientController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\BlogController;
+use App\Http\Controllers\MetaController;
 use App\Http\Controllers\OurWorkController;
-use App\Models\News;
 use App\Models\Blog;
+use App\Models\Category;
+use App\Models\OurWork;
 
-Route::get('/{blog:slug}', function (Blog $blog) {
-    dd($blog);
-    return view('admin.layouts.app');
+Route::get('/test',function(){
+    $d = OurWork::with('categories')->get();
+    dd($d);
 });
+
+// Route::get('/{blog:slug}', function (Blog $blog) {
+//     dd($blog);
+//     return view('admin.layouts.app');
+// });
 
 /*--------------------------------- Auth Routes ---------------------------------*/
 
@@ -61,6 +68,14 @@ Route::group(['middleware' => 'auth','prefix'=>'/admin'], function () {
     /*--------------------------------- Our Work ---------------------------------*/
 
     Route::resource('/our-works', OurWorkController::class);
+
+    /*----------------------------------- Meta ---------------------------------*/
+
+    Route::resource('/meta',MetaController::class);
+
+    /*----------------------------------- Our Work ---------------------------------*/
+
+    Route::resource('/our-work',OurWorkController::class);
 
 });
 
