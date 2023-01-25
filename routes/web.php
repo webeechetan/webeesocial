@@ -55,6 +55,13 @@ Route::group(['middleware' => 'auth','prefix'=>'/admin'], function () {
     Route::put('/news/{blog}', [NewsController::class,'update'])->name('news.update');
     Route::delete('/news/{blog}', [NewsController::class,'destroy'])->name('news.destroy');
 
+    
+    /*----------------------------------- Meta ---------------------------------*/
+
+    Route::get('/meta', [MetaController::class, 'index'])->name('meta.index');
+    Route::get('/meta/{work}', [MetaController::class, 'edit'])->name('meta.edit');
+    Route::get('meta/{work}', [MetaController::class, 'update'])->name('meta.update');
+
     /*--------------------------------- Category ---------------------------------*/
 
     Route::resource('/category', CategoryController::class);
@@ -69,9 +76,9 @@ Route::group(['middleware' => 'auth','prefix'=>'/admin'], function () {
 
     Route::resource('/our-works', OurWorkController::class);
 
-    /*----------------------------------- Meta ---------------------------------*/
+    // /*----------------------------------- Meta ---------------------------------*/
 
-    Route::resource('/meta',MetaController::class);
+    // Route::resource('/meta',MetaController::class);
 
     /*----------------------------------- Our Work ---------------------------------*/
 

@@ -58,7 +58,10 @@ class MetaController extends Controller
      */
     public function edit(Meta $meta)
     {
-        //
+        dd($meta);
+        exit;
+
+        return view('admin.meta.edit', compact('meta'));
     }
 
     /**
