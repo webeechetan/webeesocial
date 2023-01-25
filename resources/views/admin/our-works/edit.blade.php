@@ -12,11 +12,11 @@
         <div class="card-header d-flex justify-content-between align-items-center">
           <h5 class="mb-0">Edit Work</h5>
           <small class="text-muted float-end">
-            <a href="{{ route('our-work.index') }}"> <button class="btn btn-primary btn-sm">Our Work List</button> </a>
+            <a href="{{ route('our-works.index') }}"> <button class="btn btn-primary btn-sm">Our Work List</button> </a>
           </small>
         </div>
         <div class="card-body">
-            <form method="POST" action="{{route('our-work.update',$ourWork->id)}}" enctype="multipart/form-data" >
+            <form method="POST" action="{{route('our-works.update',$ourWork->id)}}" enctype="multipart/form-data" >
                 @csrf
                 @method('PUT')
                 <div class="row">
@@ -65,9 +65,13 @@
                     <div class="mb-3">
                       <label class="form-label" for="basic-icon-default-fullname">Category</label>
                         <select class="form-control categories"  name="categories[]" multiple>
-                          <option value="">--Select Category--</option>
                           @foreach($categories as $category)
-                          <option value="{{ $category->id }}">{{ $category->name }}</option>
+                            
+                            @if(in_array($category->id,$old_categories))
+                                <option value="{{ $category->id }}" selected='true'>{{ $category->name }}</option>
+                            @else
+                                <option value="{{ $category->id }}">{{ $category->name }}</option>
+                            @endif
                           @endforeach
                         </select>
                     </div>

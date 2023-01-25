@@ -84,9 +84,16 @@ class OurWorkController extends Controller
      */
     public function edit(OurWork $ourWork)
     {
+        // selecting all categories
         $categories = Category::all();
-       
-        return view('admin.our-works.edit',compact('categories','ourWork'));
+
+        // pushing previus selected category in an array from categories relation
+        $old_categories = array();
+        foreach($ourWork->categories as $cat){
+            array_push($old_categories,$cat->id);
+        }
+
+        return view('admin.our-works.edit',compact('categories','ourWork','old_categories'));
     }
 
     /**
@@ -115,6 +122,7 @@ class OurWorkController extends Controller
         $ourWork->og_image = $request->og_image;
 
         if($ourWork->save()){
+            $ourWork->categories()->sync($request->categories);
             $this->alert('success','Ourwork Updated','success');
             return redirect()->route('our-work.index');
         } 

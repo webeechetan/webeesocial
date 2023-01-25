@@ -12,11 +12,11 @@
         <div class="card-header d-flex justify-content-between align-items-center">
           <h5 class="mb-0">Add Our Work</h5>
           <small class="text-muted float-end">
-            <a href="{{ route('our-work.index') }}"> <button class="btn btn-primary btn-sm">Our Work List</button> </a>
+            <a href="{{ route('our-works.index') }}"> <button class="btn btn-primary btn-sm">Our Work List</button> </a>
           </small>
         </div>
         <div class="card-body">
-            <form method="POST" action="{{route('our-work.store')}}" >
+            <form method="POST" action="{{route('our-works.store')}}" >
                 @csrf
                 <div class="row">
                   

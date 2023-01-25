@@ -9,7 +9,7 @@
 <div class="card">
     <div class="card-header d-flex justify-content-between align-items-center">
         <h5 class="mb-0">Our Works</h5>
-        <a href="{{ route('our-work.create')}}" class="btn btn-primary btn-sm">Add Work</a>
+        <a href="{{ route('our-works.create')}}" class="btn btn-primary btn-sm">Add Work</a>
     </div>
     <div class="table-responsive text-nowrap">
         <div class="container">
@@ -37,8 +37,8 @@
                         </td>
                         
                         <td>
-                        <a href="{{route('our-work.edit', $work->id)}}" class="btn btn-primary btn-sm">Edit</a>
-                        <form action="{{route('our-work.destroy',$work->id)}}" method="POST" class="d-inline">
+                        <a href="{{route('our-works.edit', $work->id)}}" class="btn btn-primary btn-sm">Edit</a>
+                        <form action="{{route('our-works.destroy',$work->id)}}" method="POST" class="d-inline">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-danger btn-sm">Delete</button>
