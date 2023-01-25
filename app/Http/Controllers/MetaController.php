@@ -70,7 +70,31 @@ class MetaController extends Controller
      */
     public function update(Request $request, Meta $meta)
     {
-        //
+
+        
+        $request->validate([
+            'title' => 'required',
+            'url' => 'required',
+            'meta_description' => 'required',
+        ]);
+
+        
+        $meta->title = $request->title;
+        $meta->meta_title = $request->meta_title;
+        $meta->url = $request->url;
+        $meta->meta_description = $request->meta_description;
+        $meta->og_title = $request->og_title;
+        $meta->og_image = $request->og_image;
+
+        
+        if($meta->save()){
+           
+
+            $this->alert('success','Meta Updated','success');
+            return redirect()->route('meta.index');
+        }
+        $this->alert('error','Somethig went wrong','danger');
+        return redirect()->back();
     }
 
     /**
