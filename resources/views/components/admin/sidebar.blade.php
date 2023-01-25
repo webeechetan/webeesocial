@@ -159,12 +159,26 @@ It is just to check the uri segment value so that we can activate the currenct s
         </ul>
       </li>
 
-       <!-- Our Work -->
-       <li class="menu-item {{Request::segment(2)== 'our-work' ? 'menu-item active' : ''}}">
-        <a href="{{route('our-works.index')}}" class="menu-link ">
-          <i class="menu-icon tf-icons bx bx-file"></i>
-          <div data-i18n="Layouts"> Our Work</div>
+  <!------------------------Our Work--------------->
+
+      <li class="menu-item {{Request::segment(2)== 'our-works' ? 'menu-item active' : ''}}">
+        <a href="javascript:void(0);" class="menu-link menu-toggle">
+          <i class="menu-icon tf-icons bx bx-detail"></i>
+          <div data-i18n="Layouts">Our Work </div>
         </a>
+
+        <ul class="menu-sub">
+          <li class="menu-item">
+            <a href="{{route('our-works.index')}}" class="menu-link">
+              <div data-i18n="Without menu">Our work List</div>
+            </a>
+          </li>
+          <li class="menu-item">
+            <a href="{{route('our-works.create')}}" class="menu-link">
+              <div data-i18n="Without menu">Add New</div>
+            </a>
+          </li>
+        </ul>
       </li>
 
       <!-- Metas -->

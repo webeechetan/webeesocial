@@ -85,6 +85,7 @@ class BlogController extends Controller
      */
     public function edit(Blog $blog)
     {
+        
         return view('admin.blog.edit',['blogs' => $blog]);
     }
 

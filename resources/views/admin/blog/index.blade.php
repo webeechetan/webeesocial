@@ -12,38 +12,40 @@
         <a href="{{route('blog.create')}}" class="btn btn-primary btn-sm">Add Blog</a>
     </div>
     <div class="table-responsive text-nowrap">
-        <table class="table table-hover" id="datatable-blog">
-            <thead>
-                <tr>
-                    <th>Publish Date</th>
-                    <th>Title</th>
-                    <th>Slug</th>
-                    <th>Short Description</th>
-                    <th>Description</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody class="table-border-bottom-0">
-                @foreach($blogs as $blog)
-                <tr>
-                    <td>{{$blog->publish_date}}</td>
-                    <td>{{$blog->title}}</td>
-                    <td>{{$blog->slug}}</td>
-                    <td>{{$blog->short_description}}</td>
-                    <td>{!!$blog->description!!}</td>
-                    <td>
-                    <a href="{{route('blog.edit', $blog->id)}}" class="btn btn-primary btn-sm">Edit</a>
-                       <form action="{{route('blog.destroy',$blog->id)}}" method="POST" class="d-inline">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-danger btn-sm">Delete</button>
-                        </form>
-                    </td>
-                </tr>
-                @endforeach
+        <div class="container">
+            <table class="table table-hover" id="datatable-blog">
+                <thead>
+                    <tr>
+                        <th>Publish Date</th>
+                        <th>Title</th>
+                        <th>Slug</th>
+                        <th>Short Description</th>
+                        <th>Description</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody class="table-border-bottom-0">
+                    @foreach($blogs as $blog)
+                    <tr>
+                        <td>{{$blog->publish_date}}</td>
+                        <td>{{$blog->title}}</td>
+                        <td>{{$blog->slug}}</td>
+                        <td>{{$blog->short_description}}</td>
+                        <td>{!!$blog->description!!}</td>
+                        <td>
+                        <a href="{{route('blog.edit', $blog->id)}}" class="btn btn-primary btn-sm">Edit</a>
+                            <form action="{{route('blog.destroy',$blog->id)}}" method="POST" class="d-inline">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                    @endforeach
 
-            </tbody>
-        </table>
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>
 @endsection

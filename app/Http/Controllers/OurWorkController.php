@@ -85,7 +85,8 @@ class OurWorkController extends Controller
     public function edit(OurWork $ourWork)
     {
         $categories = Category::all();
-        return view('admin.our-works.edit',compact('categories'));
+       
+        return view('admin.our-works.edit',compact('categories','ourWork'));
     }
 
     /**
@@ -97,7 +98,30 @@ class OurWorkController extends Controller
      */
     public function update(Request $request, OurWork $ourWork)
     {
-        //
+        $request ->validate([
+            'title' => 'required',
+            'description' => 'required',
+            'thumbnail' => 'required',
+        ]);
+
+        $ourWork->title = $request->title;
+        $ourWork->slug = $request->slug;
+        $ourWork->thumbnail = $request->thumbnail;
+        $ourWork->description = $request->description;
+        $ourWork->short_description = $request->short_description;
+        $ourWork->meta_title = $request->meta_title;
+        $ourWork->meta_description = $request->meta_description;
+        $ourWork->og_title = $request->og_title;
+        $ourWork->og_image = $request->og_image;
+
+        if($ourWork->save()){
+            $this->alert('success','Ourwork Updated','success');
+            return redirect()->route('our-work.index');
+        } 
+        $this->alert('error','Something went wrong','danger');
+        return redirect()->back();
+        
+        
     }
 
     /**
@@ -108,6 +132,13 @@ class OurWorkController extends Controller
      */
     public function destroy(OurWork $ourWork)
     {
-        //
+        if($ourWork->delete()){
+            $this->alert('success','Our work Deleted successfully','success');
+            return redirect()->route('our-works.index');
+
+        }else{
+            $this->alert('error','Something went wrong','danger');
+            return redirect()->back();  
+        }
     }
 }
