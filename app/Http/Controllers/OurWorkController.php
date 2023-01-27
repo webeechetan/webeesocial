@@ -124,7 +124,7 @@ class OurWorkController extends Controller
         if($ourWork->save()){
             $ourWork->categories()->sync($request->categories);
             $this->alert('success','Ourwork Updated','success');
-            return redirect()->route('our-work.index');
+            return redirect()->route('our-works.index');
         } 
         $this->alert('error','Something went wrong','danger');
         return redirect()->back();

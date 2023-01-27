@@ -56,7 +56,7 @@
                             <i class="menu-icon tf-icons bx bx-file"></i>Choose
                           </a>
                         </span>
-                        <input id="thumbnail" class="form-control" type="text" name="thumbnail" value="{{$ourWork->title}}">
+                        <input id="thumbnail" class="form-control" type="text" name="thumbnail" value="{{$ourWork->thumbnail}}">
                       </div>
                     </div>
                   </div>

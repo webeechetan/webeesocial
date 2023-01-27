@@ -12,7 +12,7 @@
     </div>
     <div class="table-responsive text-nowrap">
         <div class="container">
-            <table class="table table-hover" id="datatable">
+            <table class="table table-hover" id="datatable-meta">
                 <thead>
                     <tr>
                         <th>Title</th>
@@ -30,7 +30,7 @@
                         <td>{{ $meta->id }}</td>
                         <td>{{ $meta->url }}</td>
                         <td>{{ \Illuminate\Support\Str::words($meta->meta_title,3,'.....') }}</td>
-                        <td>{{ \Illuminate\Support\Str::words($meta->meta_description,3,'.....') }}</td>
+                        <td>{!! \Illuminate\Support\Str::words($meta->meta_description,3,'.....') !!}</td>
                         <td>{{ $meta->og_title }}</td>
                         <td>{{ $meta->og_image }}</td>
                         <td><a href="{{ route('meta.edit', $meta->id) }}" class="btn btn-primary btn-sm"> Edit </a></td>
@@ -47,7 +47,7 @@
     <script src="//cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
     <script>
         $(document).ready( function () {
-            $('#datatable').DataTable();
+            $('#datatable-meta').DataTable();
         } );
     </script>
 @endsection

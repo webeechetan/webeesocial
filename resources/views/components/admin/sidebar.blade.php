@@ -111,7 +111,7 @@ It is just to check the uri segment value so that we can activate the currenct s
       <!-- News -->
       <li class="menu-item {{Request::segment(2)== 'news' ? 'menu-item active' : ''}}">
         <a href="javascript:void(0);" class="menu-link menu-toggle">
-          <i class="menu-icon tf-icons bx bx-detail"></i>
+          <i class="menu-icon tf-icons bx bx-trending-up"></i>
           <div data-i18n="Layouts">News</div>
         </a>
 
@@ -163,7 +163,7 @@ It is just to check the uri segment value so that we can activate the currenct s
 
       <li class="menu-item {{Request::segment(2)== 'our-works' ? 'menu-item active' : ''}}">
         <a href="javascript:void(0);" class="menu-link menu-toggle">
-          <i class="menu-icon tf-icons bx bx-detail"></i>
+          <i class="menu-icon tf-icons bx bx-task"></i>
           <div data-i18n="Layouts">Our Work </div>
         </a>
 
@@ -184,7 +184,7 @@ It is just to check the uri segment value so that we can activate the currenct s
       <!-- Metas -->
       <li class="menu-item {{Request::segment(2)== 'meta' ? 'menu-item active' : ''}}">
         <a href="{{route('meta.index')}}" class="menu-link ">
-          <i class="menu-icon tf-icons bx bx-file"></i>
+          <i class="menu-icon tf-icons bx bx-trending-up"></i>
           <div data-i18n="Layouts">Meta</div>
         </a>
       </li>
