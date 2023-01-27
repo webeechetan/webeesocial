@@ -2,32 +2,50 @@
 @section('title', 'Our Clients')
 @section('content')
 <div class="row">
-    <div class="col-lg-8 mb-4 order-0">
-       <div class="card">
-          <div class="d-flex align-items-end row">
-             <div class="col-sm-7">
-                <div class="card-body">
-                   <h5 class="card-title text-primary">Congratulations John! 🎉</h5>
-                   <p class="mb-4">
-                      You have done <span class="fw-bold">72%</span> more sales today. Check your new badge in
-                      your profile.
-                   </p>
-                   <a href="javascript:;" class="btn btn-sm btn-outline-primary">View Badges</a>
-                </div>
+   <div class="col-md-6">
+      <div class="card p-3 text-end">
+         <figure class="mb-0">
+           <blockquote class="blockquote ">
+             <p class="quote_content"></p>
+           </blockquote>
+           <figcaption class="blockquote-footer mb-0 text-muted quote_author">
+           </figcaption>
+         </figure>
+         <div class="demo-inline-spacing quote_tags"></div>
+         <div class="text-center mt-2 quote_spinner">
+            <div class="spinner-border spinner-border-lg text-primary " role="status">
+               <span class="visually-hidden">Loading...</span>
              </div>
-             <div class="col-sm-5 text-center text-sm-left">
-                <div class="card-body pb-0 px-0 px-md-4">
-                   <img
-                      src="{{ asset('admin') }}/img/illustrations/man-with-laptop-light.png"
-                      height="140"
-                      alt="View Badge User"
-                      data-app-dark-img="illustrations/man-with-laptop-dark.png"
-                      data-app-light-img="illustrations/man-with-laptop-light.png"
-                      />
-                </div>
-             </div>
-          </div>
+         </div>
        </div>
     </div>
- </div>
+   </div>
+@endsection
+
+@section('scripts')
+   <script>
+      $(document).ready(function(){
+         getQuote();
+      });
+      
+      function getQuote(){
+         fetch('https://api.quotable.io/random')
+         .then((response) => response.json())
+         .then((data) => printQuote(data) );
+
+      }
+
+      function printQuote(quote){
+         $(".quote_content").html(quote.content);
+         $(".quote_author").html(quote.author);
+         let colors = ['primary','secondary','success','warning'];
+         let tags = '';
+         for(x in quote.tags){
+            const color = Math.floor(Math.random() * colors.length);
+            tags +=`<span class="badge rounded-pill bg-label-${colors[color]}">#${quote.tags[x]}</span>`;
+         }
+         $(".quote_tags").html(tags);
+         $(".quote_spinner").fadeOut();
+      }
+   </script>
 @endsection

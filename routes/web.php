@@ -13,15 +13,12 @@ use App\Models\Blog;
 use App\Models\Category;
 use App\Models\OurWork;
 
+
 Route::get('/test',function(){
-    $d = OurWork::with('categories')->get();
+    $d = file_get_contents("https://api.quotable.io/random");
+    $d = json_decode($d);
     dd($d);
 });
-
-// Route::get('/{blog:slug}', function (Blog $blog) {
-//     dd($blog);
-//     return view('admin.layouts.app');
-// });
 
 /*--------------------------------- Auth Routes ---------------------------------*/
 
@@ -46,7 +43,7 @@ Route::group(['middleware' => 'auth','prefix'=>'/admin'], function () {
     --------------------------------*/
 
     Route::resources([
-        '/our-clients' => OurWorkController::class,
+        '/our-clients' => OurClientController::class,
         '/category' => CategoryController::class,
         '/blog' => BlogController::class,
         '/our-works' => OurWorkController::class
