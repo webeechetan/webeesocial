@@ -19,4 +19,10 @@ class Controller extends BaseController
             'type' => $type
         ]);
     }
+
+    public function quote(){
+        $quote = file_get_contents("https://api.quotable.io/random");
+        $quote = json_decode($quote);
+        return $quote;
+    }
 }
