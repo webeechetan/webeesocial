@@ -10,8 +10,16 @@ use App\Http\Controllers\BlogController;
 use App\Http\Controllers\MetaController;
 use App\Http\Controllers\OurWorkController;
 use App\Http\Controllers\WebSiteController;
+use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 
 /*--------------------------------- Website Routes ---------------------------------*/
+
+ 
+Route::get('/auth/google/redirect', [AuthController::class,'googleRedirect'])->name('google.redirect');
+ 
+Route::get('/auth/google/callback',[AuthController::class,'googleCallback'])->name('google.callback');
+
 
 Route::get('/',[WebSiteController::class,'viewIndex']);
 Route::get('/about-us',[WebSiteController::class,'viewAbout']);
