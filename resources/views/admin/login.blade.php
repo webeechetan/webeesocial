@@ -108,6 +108,11 @@
                   <button class="btn btn-primary d-grid w-100" type="submit">Sign in</button>
                 </div>
               </form>
+              <a href="{{ route('google.redirect') }}" title="Login With Google">
+                <button class="btn btn-danger d-grid w-100" >
+                  <i class='bx bxl-google-plus' ></i>
+                </button>
+              </a>
             </div>
           </div>
           <!-- /Register -->
