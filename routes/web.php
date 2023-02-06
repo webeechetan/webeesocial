@@ -13,8 +13,16 @@ use App\Http\Controllers\WebSiteController;
 
 /*--------------------------------- Website Routes ---------------------------------*/
 
-Route::get('/',[WebSiteController::class,'viewIndex']);
-Route::get('/about-us',[WebSiteController::class,'viewAbout']);
+Route::get('/',[WebSiteController::class, 'viewIndex']);
+Route::get('/blog', [WebSiteController::class, 'viewBlog']);
+Route::get('/our-work', [WebSiteController::class, 'viewOurWork']);
+
+
+Route::get('/about-us',[WebSiteController::class, 'viewAbout']);
+
+Route::get('/getin-touch',[WebSiteController::class, 'viewGetintouch']);
+
+Route::get('/our-clients', [WebSiteController::class, 'viewOurClients']);
 
 /*--------------------------------- Auth Routes ---------------------------------*/
 
@@ -64,7 +72,7 @@ Route::group(['middleware' => 'auth','prefix'=>'/admin'], function () {
     /*----------------------------------- Meta ---------------------------------*/
 
     Route::get('/meta', [MetaController::class, 'index'])->name('meta.index');
-    Route::get('/meta/{meta}', [MetaController::class, 'edit'])->name('meta.edit');
+    Route::get('/meta{meta}', [MetaController::class, 'edit'])->name('meta.edit');
     Route::put('meta/{meta}', [MetaController::class, 'update'])->name('meta.update');
 
 });

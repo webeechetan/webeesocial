@@ -25,11 +25,11 @@
                     <tr>
                         <td>{{$category->name}}</td>
                         <td>
-                        <a href="{{ route('category.edit',$category->id) }}" class="btn btn-primary btn-sm">Edit</a>
+                        <a href="{{ route('category.edit',$category->id) }}" class="btn btn-primary btn-sm"><i class="bx bx-edit"></i></a>
                            <form action="{{ route('category.destroy' , $category->id) }}" method="POST" class="d-inline">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                                <button type="submit" class="btn btn-danger btn-sm"><i class="bx bx-trash-alt "></i></button>
                             </form>
                         </td>
                     </tr>
@@ -38,6 +38,8 @@
             </table>
         </div>
     </div>
+
+   
 </div>
 @endsection
 

@@ -24,7 +24,7 @@
                             <form action="{{ route('our-clients.destroy', $client->id) }}" method="POST" class="d-inline">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="btn btn-danger btn-sm"><i class="bx bx-trash-alt "></i></button>
+                                <button  type="submit" class="btn btn-danger btn-sm"><i class="bx bx-trash-alt "></i></button>
                             </form>
                         </div>
                     </div>

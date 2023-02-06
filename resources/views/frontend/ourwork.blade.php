@@ -4,6 +4,6 @@
 @section('meta_description',$meta->meta_description)
 
 @section('content')
-{!! $meta->meta_description !!}
+
 
 @endsection

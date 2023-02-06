@@ -4,9 +4,9 @@ It is just to check the uri segment value so that we can activate the currenct s
 
 <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
     <div class="app-brand demo">
-      <a href="index.html" class="app-brand-link">
+      <a href="" class="app-brand-link">
         <span class="app-brand-logo demo">
-          <svg
+          <!-- <svg
             width="25"
             viewBox="0 0 25 42"
             version="1.1"
@@ -58,9 +58,10 @@ It is just to check the uri segment value so that we can activate the currenct s
                 </g>
               </g>
             </g>
-          </svg>
+          </svg> -->
         </span>
-        <span class="app-brand-text demo menu-text fw-bolder ms-2">Sneat</span>
+        <!-- <img src="https://www.webeesocial.com/wp-content/uploads/2020/12/logo-tm-compressed.png" width="100px" class="img-fluid" alt="logo"> -->
+        <span class="app-brand-text demo menu-text fw-bolder ms-2"><img src="{{ asset('admin/img/avatars/logoo.jpeg') }}" width="100px" class="img-fluid" alt="logo"></span>
       </a>
 
       <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto d-block d-xl-none">
