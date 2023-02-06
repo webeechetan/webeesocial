@@ -10,9 +10,12 @@ use App\Http\Controllers\BlogController;
 use App\Http\Controllers\MetaController;
 use App\Http\Controllers\OurWorkController;
 use App\Http\Controllers\WebSiteController;
+use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 
 /*--------------------------------- Website Routes ---------------------------------*/
 
+<<<<<<< HEAD
 Route::get('/',[WebSiteController::class, 'viewIndex']);
 Route::get('/blog', [WebSiteController::class, 'viewBlog']);
 Route::get('/our-work', [WebSiteController::class, 'viewOurWork']);
@@ -23,6 +26,16 @@ Route::get('/about-us',[WebSiteController::class, 'viewAbout']);
 Route::get('/getin-touch',[WebSiteController::class, 'viewGetintouch']);
 
 Route::get('/our-clients', [WebSiteController::class, 'viewOurClients']);
+=======
+ 
+Route::get('/auth/google/redirect', [AuthController::class,'googleRedirect'])->name('google.redirect');
+ 
+Route::get('/auth/google/callback',[AuthController::class,'googleCallback'])->name('google.callback');
+
+
+Route::get('/',[WebSiteController::class,'viewIndex']);
+Route::get('/about-us',[WebSiteController::class,'viewAbout']);
+>>>>>>> 0ba515460dd5086390303d76ea063abfc895a6a7
 
 /*--------------------------------- Auth Routes ---------------------------------*/
 
